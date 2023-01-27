@@ -96,6 +96,9 @@ const findPairWithLargestOverlap = (input) => {
         })
         .reduce((result, entry) => result[1] > entry[1] ? result : entry, []);
 
+    if(! hash) {
+        return null;
+    }
     return JSON.parse(hash);
 }
 
@@ -195,6 +198,11 @@ document.getElementById('fileInput')
             }
 
             const pair = findPairWithLargestOverlap(input);
+            if(! pair) {
+                renderData([]);
+                return;
+            }
+
             renderData(
                 findCommonProjectsWorkingTime(input, pair),
                 pair,
