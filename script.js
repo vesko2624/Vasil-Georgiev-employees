@@ -157,8 +157,10 @@ const parseCsv = (text) => {
     return text
         .split('\n')
         .filter(Boolean)
+        .map(row => row.trim())
         .map((row) => {
-            const [employeeId, projectId, start, end] = row.split(',');
+            const [employeeId, projectId, start, end] = row.split(',')
+                .map(column => column.trim());
 
             const startDate = new Date(start);
             const endDate = isNaN(new Date(end).getTime()) ? new Date() : new Date(end);
